@@ -42,6 +42,7 @@ namespace SteamPhone
 
         public async Task getAuth(string user, string password)
         {
+            SteamClient client = new SteamClient();
             UserAuthenticator.CaptchaAnswer captchaAns = new UserAuthenticator.CaptchaAnswer();
 
             if (!string.IsNullOrWhiteSpace(txtSteamguard.Text))
@@ -111,11 +112,27 @@ namespace SteamPhone
                     new BitmapImage(new Uri(authId.CaptchaURL.ToString()));
                 }
 
-                MessageBox.Show(authId.User.AuthCookie.ToString());
+            MessageBox.Show(authId.User.AuthCookie.ToString());
+           UserAuthenticator s =  UserAuthenticator.ForProtectedResource(authId.User);
+           client.Authenticator = s;
+
+           ISteamRequest request;
+           request.SteamApiMethod(SteamNews.GetNewsForAppAsync(client,4,4,4));
+
+           
+            //MessageBox.Show(player.PersonaName.ToString());
             }
 
 
         }
+
+        public async Task<SteamUserInterface.Player> playerInfo(SteamUserInterface.Player player, SteamClient client)
+        { 
+            player = await SteamUserInterface.GetPlayerSummaryAsync(client, "76561197960401227");
+            return player;
+
+        }
+
         public async Task getInfo()
         {
             UserAuthenticator.SteamGuardAnswer sAnswer = new UserAuthenticator.SteamGuardAnswer();
