@@ -34,7 +34,7 @@ namespace SteamPhone
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
-
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             getAuth(txtUsername.Text,txtPassword.Password);
@@ -113,11 +113,11 @@ namespace SteamPhone
                 }
 
             MessageBox.Show(authId.User.AuthCookie.ToString());
-           UserAuthenticator s =  UserAuthenticator.ForProtectedResource(authId.User);
-           client.Authenticator = s;
+           //UserAuthenticator s =  UserAuthenticator.ForProtectedResource(authId.User);
+           //client.Authenticator = s;
 
-           ISteamRequest request;
-           request.SteamApiMethod(SteamNews.GetNewsForAppAsync(client,4,4,4));
+           //ISteamRequest request;
+           //request.SteamApiMethod(SteamNews.GetNewsForAppAsync(client,4,4,4));
 
            
             //MessageBox.Show(player.PersonaName.ToString());
